@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="MainWindowTitle" xml:space="preserve">
-    <value>SBOL html reports parser app</value>
+    <value>Парсер html отчетов SBOL </value>
   </data>
   <data name="MenuItemAbout" xml:space="preserve">
-    <value>About</value>
+    <value>О программе</value>
   </data>
   <data name="MenuItemClose" xml:space="preserve">
-    <value>Close</value>
+    <value>Закрыть</value>
   </data>
   <data name="MenuItemFile" xml:space="preserve">
-    <value>File</value>
+    <value>Файл</value>
   </data>
   <data name="MenuItemHelpRoot" xml:space="preserve">
-    <value>Help</value>
+    <value>Справка</value>
   </data>
   <data name="MenuItemSettings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Настройки</value>
   </data>
 </root>

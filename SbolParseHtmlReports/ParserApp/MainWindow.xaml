@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ParserApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Height="450" Width="800"
+        Title="{Binding Source={StaticResource Strings}, Path=MainWindowTitle}">
+    <Window.Resources>
         
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="Close" Executed="Close_Executed"></CommandBinding>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemFile}">
+                <MenuItem Header="Открыть html отчет"></MenuItem>
+                <MenuItem Header="Открыть csv таблицу"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemClose}" Command="Close"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemSettings}"></MenuItem>
+            <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemHelpRoot}">
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemAbout}"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <DataGrid Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата"></DataGridTextColumn>
+                <DataGridTextColumn Header="Категория"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название"></DataGridTextColumn>
+                <DataGridTextColumn Header="Сумма"></DataGridTextColumn>
+                <DataGridTextColumn Header="Остаток"></DataGridTextColumn>
+                <DataGridTextColumn Header="Место"></DataGridTextColumn>
+                <DataGridTextColumn Header="Проведено"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
