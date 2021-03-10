@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ParserCore
+﻿namespace ParserCore
 {
     public class DataSet
     {
@@ -18,40 +14,13 @@ namespace ParserCore
         public DataSet()
         {
             DataXPath = "//div[contains(@class,'trs_it')]";
-            Title = new DataColumn
-            {
-                Name = "Название операции",
-                XPath = ".//div/div[1]",
-            };
-            Category = new DataColumn
-            {
-                Name = "Категория",
-                XPath = ".//*[contains(@class,'icat')]",
-            };
-            Date = new DataColumn
-            {
-                Name = "Дата операции",
-                XPath = ".//div[contains(@class,'trs_date')]",
-            };
-            Summ = new DataColumn
-            {
-                Name = "Сумма",
-                XPath = ".//div[contains(@class,'trs_sum')]",
-            };
-            BalanceArter = new DataColumn
-            {
-                Name = "Остаток на карте",
-            };
-            Location = new DataColumn
-            {
-                Name = "Место",
-                XPath = "//span[contains(@class,'trs_country')]",
-            };
-            DateProceed = new DataColumn
-            {
-                Name = "Дата проведения",
-                XPath = "//span[contains(@class,'idate')]",
-            };
+            Title = new DataColumn("Название операции", ".//div/div[1]");
+            Category = new DataColumn("Категория", ".//*[contains(@class,'icat')]");
+            Date = new DataColumn("Дата операции", ".//div[contains(@class,'trs_date')]");
+            Summ = new DataColumn("Сумма", ".//div[contains(@class,'trs_sum')]");
+            BalanceArter = new DataColumn("Остаток на карте",null);
+            Location = new DataColumn("Место", "//span[contains(@class,'trs_country')]");
+            DateProceed = new DataColumn("Дата проведения", "//span[contains(@class,'idate')]");
         }       
     }
 }
