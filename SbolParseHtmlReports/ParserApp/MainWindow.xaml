@@ -12,6 +12,7 @@
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="Close" Executed="Close_Executed"></CommandBinding>
+        <CommandBinding Command="{x:Static local:AppCommands.About}" Executed="About_Executed"></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -27,7 +28,8 @@
             </MenuItem>
             <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemSettings}"></MenuItem>
             <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemHelpRoot}">
-                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemAbout}"></MenuItem>
+                <MenuItem Header="" Command="Help"></MenuItem>
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemAbout}" Command="{x:Static local:AppCommands.About}"></MenuItem>
             </MenuItem>
         </Menu>
         <DataGrid Grid.Row="1">
