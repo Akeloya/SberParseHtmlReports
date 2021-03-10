@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParserCore.Tests", "ParserC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserApp", "ParserApp\ParserApp.csproj", "{5F30766D-C6EF-4D48-81D2-DC1949AD040A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserCore", "ParserCore\ParserCore.csproj", "{5B5EC9B0-5AC2-40D8-AC02-3E8660F05281}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParserCore", "ParserCore\ParserCore.csproj", "{5B5EC9B0-5AC2-40D8-AC02-3E8660F05281}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
