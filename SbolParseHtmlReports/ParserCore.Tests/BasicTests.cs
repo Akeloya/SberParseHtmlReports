@@ -16,8 +16,10 @@ namespace ParserCore.Tests
 
             foreach(var file in files)
             {
-                var parser = new Parser(file, pathWithDir,new DataSet(),';');
+                var parser = new Parser(file,new DataSet(),';');
                 parser.RunParse();
+                Assert.NotNull(parser.Operations);
+                parser.Save(pathWithDir);
             }
             
         }

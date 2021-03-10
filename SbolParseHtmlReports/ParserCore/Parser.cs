@@ -9,17 +9,16 @@ namespace ParserCore
 {
     public class Parser
     {
-        private string _path;
-        private string _outPath;
+        private readonly string _path;
         private DataSet _dataSet;
         private const string _rootTable = "//div[contains(@class,'b-trs')]";
         private const string _restOnBegin = "//*[contains(@class,'state_list')]/li[1]/div[2]";
         private List<CardOperation> _operations = new List<CardOperation>();
         private char _delimetr;
-        public Parser(string path, string outPath, DataSet ds, char delimetr)
+        public IEnumerable<CardOperation> Operations => _operations;
+        public Parser(string path, DataSet ds, char delimetr)
         {
             _path = path;
-            _outPath = outPath;
             _dataSet = ds;
             _delimetr = delimetr;
         }
@@ -41,12 +40,15 @@ namespace ParserCore
                     rest = GetValues(rest, rowNum, node);
                 }
             }            
+        }
 
-            if(_operations.Count > 0)
+        public void Save(string filePath)
+        {
+            if (_operations.Count > 0)
             {
-                if (File.Exists(_outPath))
-                    File.Delete(_outPath);
-                var file = File.AppendText(_outPath);
+                if (File.Exists(filePath))
+                    File.Delete(filePath);
+                var file = File.AppendText(filePath);
                 StringBuilder headerSb = BuildHeader();
                 file.WriteLine(headerSb);
 
@@ -104,35 +106,41 @@ namespace ParserCore
         }
 
         private decimal GetValues(decimal rest, int rowNum, HtmlNode node)
-        {
-            var title = node.SelectSingleNode(_dataSet.Title.XPath).InnerText.Trim();
+        {            
             var sumNode = node.SelectSingleNode(_dataSet.Summ.XPath);
             var factor = -1;
             if (sumNode.FirstChild.Attributes["class"].Value == "trs_st-refill")
                 factor = 1;
 
-            var currSumStr = sumNode.SelectSingleNode(".//*[contains(@class, 'trs_sum-am')]").InnerText;
-            currSumStr = currSumStr.Trim().Replace('\u202F', ' ');
+            var currSumStr = GetNodeValue(node, ".//*[contains(@class, 'trs_sum-am')]").Replace('\u202F', ' ');
             var sum = decimal.Parse(currSumStr);
-            var categoty = node.SelectSingleNode(_dataSet.Category.XPath).InnerText.Trim();
-            var location = node.SelectSingleNode(_dataSet.Location.XPath).InnerText.Trim();
-            var date = node.SelectSingleNode(_dataSet.Date.XPath).InnerText;
-            var opDate = node.SelectSingleNode(_dataSet.DateProceed.XPath).InnerText;
+            var date = GetNodeValue(node, _dataSet.Date.XPath);
+            var opDate = GetNodeValue(node, _dataSet.DateProceed.XPath);
 
-            //Платежи идут в обратном порядке, поэтому остаток формируется неверным
-            rest = rest + factor * sum;
+            rest += factor * sum;
             _operations.Add(new CardOperation
             {
                 RowNumber = rowNum,
-                Title = title,
-                Category = categoty,
+                Title = GetNodeValue(node, _dataSet.Title.XPath),
+                Category = GetNodeValue(node, _dataSet.Category.XPath),
                 Date = DateTime.Parse(date),
-                Location = location,
+                Location = GetNodeValue(node, _dataSet.Location.XPath),
                 ProcessDate = DateTime.Parse(opDate),
                 Summ = sum * factor,
                 BalanceAfter = rest
             });
             return rest;
+        }
+
+        private static string GetNodeValue(HtmlNode node, string path)
+        {
+            string result = null;
+            var selectedNode = node.SelectSingleNode(path);
+            if (selectedNode != null)
+                result = selectedNode.InnerText;
+            if (!string.IsNullOrEmpty(result))
+                result = result.Trim();
+            return result;
         }
     }
 }
