@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using Xunit;
 
 namespace ParserCore.Tests
@@ -14,11 +15,30 @@ namespace ParserCore.Tests
             var pathWithDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _outFileName);
             var files = Directory.GetFiles(_fileNames, "*.html");
 
-            foreach(var file in files)
+            var testDs = new DataSet();
+            Assert.NotNull(testDs.DataXPath);
+            Assert.NotNull(testDs.Title);
+            Assert.NotNull(testDs.Category);
+            Assert.NotNull(testDs.DataXPath);
+            Assert.NotNull(testDs.Date);
+            Assert.NotNull(testDs.DateProceed);
+
+            foreach (var file in files)
             {
-                var parser = new Parser(file,new DataSet(),';');
+                var parser = new Parser(file,testDs,';');
                 parser.RunParse();
                 Assert.NotNull(parser.Operations);
+                Assert.NotEmpty(parser.Operations);
+                foreach(var op in parser.Operations)
+                {
+                    Assert.NotEqual(0, op.RowNumber);
+                    Assert.NotEmpty(op.Title);
+                    Assert.NotEmpty(op.Category);
+                    Assert.NotEqual(0, op.Summ);
+                    Assert.NotEmpty(op.Location);
+                    Assert.NotEqual(DateTime.MinValue, op.Date);
+                    Assert.NotEqual(DateTime.MinValue, op.ProcessDate);
+                }
                 parser.Save(pathWithDir);
             }
             
