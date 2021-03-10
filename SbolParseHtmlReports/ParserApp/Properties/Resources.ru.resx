@@ -129,6 +129,9 @@
   <data name="MenuItemFile" xml:space="preserve">
     <value>Файл</value>
   </data>
+  <data name="MenuItemHelp" xml:space="preserve">
+    <value>Помощь</value>
+  </data>
   <data name="MenuItemHelpRoot" xml:space="preserve">
     <value>Справка</value>
   </data>

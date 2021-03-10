@@ -28,7 +28,7 @@
             </MenuItem>
             <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemSettings}"></MenuItem>
             <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemHelpRoot}">
-                <MenuItem Header="" Command="Help"></MenuItem>
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemHelp}" Command="Help"></MenuItem>
                 <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemAbout}" Command="{x:Static local:AppCommands.About}"></MenuItem>
             </MenuItem>
         </Menu>

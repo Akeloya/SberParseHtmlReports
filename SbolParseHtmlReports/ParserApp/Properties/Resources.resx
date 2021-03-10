@@ -136,6 +136,9 @@
   <data name="MenuItemFile" xml:space="preserve">
     <value>File</value>
   </data>
+  <data name="MenuItemHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
   <data name="MenuItemHelpRoot" xml:space="preserve">
     <value>Help</value>
   </data>

@@ -119,6 +119,15 @@ namespace ParserApp.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Help.
         /// </summary>
+        public static string MenuItemHelp {
+            get {
+                return ResourceManager.GetString("MenuItemHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Help.
+        /// </summary>
         public static string MenuItemHelpRoot {
             get {
                 return ResourceManager.GetString("MenuItemHelpRoot", resourceCulture);
