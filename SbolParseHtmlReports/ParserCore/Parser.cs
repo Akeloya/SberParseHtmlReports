@@ -11,8 +11,6 @@ namespace ParserCore
     {
         private readonly string _path;
         private DataSet _dataSet;
-        private const string _rootTable = "//div[contains(@class,'b-trs')]";
-        private const string _restOnBegin = "//*[contains(@class,'state_list')]/li[1]/div[2]";
         private List<CardOperation> _operations = new List<CardOperation>();
         private char _delimetr;
         public IEnumerable<CardOperation> Operations => _operations;
@@ -28,8 +26,8 @@ namespace ParserCore
             var htmlDoc = new HtmlDocument();
             htmlDoc.Load(_path);
 
-            var root = htmlDoc.DocumentNode.SelectSingleNode(_rootTable);//"//*[@id=\"History\"]/div[5]/div[3]"
-            var sumStr = htmlDoc.DocumentNode.SelectSingleNode(_restOnBegin).InnerText;
+            var root = htmlDoc.DocumentNode.SelectSingleNode(_dataSet.RootTableXpath);
+            var sumStr = htmlDoc.DocumentNode.SelectSingleNode(_dataSet.RestXPath).InnerText;
             var rest = decimal.Parse(sumStr.Trim().Replace('\u202F', ' '));
             if (root != null)
             {

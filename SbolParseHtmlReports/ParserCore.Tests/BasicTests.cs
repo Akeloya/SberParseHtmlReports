@@ -22,6 +22,8 @@ namespace ParserCore.Tests
             Assert.NotNull(testDs.DataXPath);
             Assert.NotNull(testDs.Date);
             Assert.NotNull(testDs.DateProceed);
+            Assert.NotEmpty(testDs.RestXPath);
+            Assert.NotEmpty(testDs.RootTableXpath);
 
             foreach (var file in files)
             {
@@ -42,6 +44,28 @@ namespace ParserCore.Tests
                 parser.Save(pathWithDir);
             }
             
+        }
+
+        [Fact]
+        public void TestDataSetConfig()
+        {
+            const string jsonFileName = "settings.json";
+
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, jsonFileName);
+            var ds = new DataSet();
+            ds.Save(path);
+
+            var checkDs = DataSet.LoadSettings(path);
+            Assert.NotEmpty(checkDs.RootTableXpath);
+            Assert.NotEmpty(checkDs.RestXPath);
+            Assert.NotEmpty(checkDs.DataXPath);
+            Assert.NotNull(checkDs.Title);
+            Assert.NotNull(checkDs.Category);
+            Assert.NotNull(checkDs.DataXPath);
+            Assert.NotNull(checkDs.Date);
+            Assert.NotNull(checkDs.DateProceed);
+
+            Assert.Throws<FileNotFoundException>(()=> DataSet.LoadSettings(path + ".ttt"));
         }
     }
 }
