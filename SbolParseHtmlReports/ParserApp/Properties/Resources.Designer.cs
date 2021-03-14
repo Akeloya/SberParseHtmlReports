@@ -71,6 +71,24 @@ namespace ParserApp.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на XPath.
+        /// </summary>
+        public static string DataColumnPath {
+            get {
+                return ResourceManager.GetString("DataColumnPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Title.
+        /// </summary>
+        public static string DataColumnTitle {
+            get {
+                return ResourceManager.GetString("DataColumnTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
         public static byte[] LICENSE {
@@ -131,6 +149,33 @@ namespace ParserApp.Properties {
         public static string MenuItemHelpRoot {
             get {
                 return ResourceManager.GetString("MenuItemHelpRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Import settings.
+        /// </summary>
+        public static string MenuItemImportSettings {
+            get {
+                return ResourceManager.GetString("MenuItemImportSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Open csv file.
+        /// </summary>
+        public static string MenuItemOpenCsvFile {
+            get {
+                return ResourceManager.GetString("MenuItemOpenCsvFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Open Html report.
+        /// </summary>
+        public static string MenuItemOpenHtmlFile {
+            get {
+                return ResourceManager.GetString("MenuItemOpenHtmlFile", resourceCulture);
             }
         }
         

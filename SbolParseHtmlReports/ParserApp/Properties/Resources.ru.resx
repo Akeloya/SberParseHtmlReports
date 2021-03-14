@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DataColumnPath" xml:space="preserve">
+    <value>Путь</value>
+  </data>
+  <data name="DataColumnTitle" xml:space="preserve">
+    <value>Название</value>
+  </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Парсер html отчетов SBOL </value>
   </data>
@@ -134,6 +140,15 @@
   </data>
   <data name="MenuItemHelpRoot" xml:space="preserve">
     <value>Справка</value>
+  </data>
+  <data name="MenuItemImportSettings" xml:space="preserve">
+    <value>Настройки импорта</value>
+  </data>
+  <data name="MenuItemOpenCsvFile" xml:space="preserve">
+    <value>Открыть csv файл</value>
+  </data>
+  <data name="MenuItemOpenHtmlFile" xml:space="preserve">
+    <value>Открыть html отчет</value>
   </data>
   <data name="MenuItemSettings" xml:space="preserve">
     <value>Настройки</value>
