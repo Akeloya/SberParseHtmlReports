@@ -187,5 +187,14 @@ namespace ParserApp.Properties {
                 return ResourceManager.GetString("MenuItemSettings", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Edit import settings.
+        /// </summary>
+        public static string WndTitleEditSettings {
+            get {
+                return ResourceManager.GetString("WndTitleEditSettings", resourceCulture);
+            }
+        }
     }
 }

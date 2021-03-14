@@ -153,4 +153,7 @@
   <data name="MenuItemSettings" xml:space="preserve">
     <value>Настройки</value>
   </data>
+  <data name="WndTitleEditSettings" xml:space="preserve">
+    <value>Редактирование настроек импорта</value>
+  </data>
 </root>
