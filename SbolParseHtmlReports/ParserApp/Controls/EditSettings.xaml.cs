@@ -1,0 +1,47 @@
+﻿using ParserCore;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+
+namespace ParserApp.Controls
+{
+    /// <summary>
+    /// Логика взаимодействия для EditSettings.xaml
+    /// </summary>
+    public partial class EditSettings : UserControl
+    {
+        private string _settingsPath;
+        public EditSettings()
+        {
+            _settingsPath = App.GetSettingsPath();
+            InitializeComponent();
+            try
+            {
+                DataContext = DataSet.LoadSettings(_settingsPath);
+            }
+            catch (FileNotFoundException)
+            {
+                DataContext = new DataSet();
+            }
+        }
+
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
+        }
+
+        private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var obj = (DataSet)DataContext;
+            obj.Save(_settingsPath);
+        }
+    }
+}
