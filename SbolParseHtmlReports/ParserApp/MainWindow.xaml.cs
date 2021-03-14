@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ParserApp.Controls;
+using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
@@ -27,6 +28,11 @@ namespace ParserApp
             licenses.Add(new LicenseInformation("Application", Encoding.UTF8.GetString(Properties.Resources.LICENSE), false));
             var ab = new AboutApp(licenses,null);
             ab.Show();
+        }
+
+        private void OpenSettings_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            AppWindows.OpenSettings();
         }
     }
 }

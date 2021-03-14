@@ -15,5 +15,12 @@ namespace ParserApp
             new InputGestureCollection(
                 new List<InputGesture>() { new KeyGesture(Key.F1, ModifierKeys.Control) })
             );
+
+        public static readonly RoutedCommand OpenSettings = new RoutedCommand(
+            nameof(OpenSettings),
+            typeof(MainWindow),
+            new InputGestureCollection(
+                new List<InputGesture>() { new KeyGesture(Key.F6) })
+            );
     }
 }

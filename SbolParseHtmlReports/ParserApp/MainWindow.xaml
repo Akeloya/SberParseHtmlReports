@@ -13,6 +13,7 @@
     <Window.CommandBindings>
         <CommandBinding Command="Close" Executed="Close_Executed"></CommandBinding>
         <CommandBinding Command="{x:Static local:AppCommands.About}" Executed="About_Executed"></CommandBinding>
+        <CommandBinding Command="{x:Static local:AppCommands.OpenSettings}" Executed="OpenSettings_Executed"></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -21,12 +22,14 @@
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemFile}">
-                <MenuItem Header="Открыть html отчет"></MenuItem>
-                <MenuItem Header="Открыть csv таблицу"></MenuItem>
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemOpenHtmlFile}"></MenuItem>
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemOpenCsvFile}"></MenuItem>
                 <Separator></Separator>
                 <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemClose}" Command="Close"></MenuItem>
             </MenuItem>
-            <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemSettings}"></MenuItem>
+            <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemSettings}">
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemImportSettings}" Command="{x:Static local:AppCommands.OpenSettings}"></MenuItem>
+            </MenuItem>
             <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemHelpRoot}">
                 <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemHelp}" Command="Help"></MenuItem>
                 <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemAbout}" Command="{x:Static local:AppCommands.About}"></MenuItem>
