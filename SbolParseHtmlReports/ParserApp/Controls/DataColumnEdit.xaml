@@ -12,8 +12,8 @@
             <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="40*"></ColumnDefinition>
+            <ColumnDefinition Width="60*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label Content="{Binding Source={StaticResource Strings},Path=DataColumnTitle}" Grid.Row="0" Grid.Column="0"></Label>
         <Label Content="{Binding Source={StaticResource Strings},Path=DataColumnPath}" Grid.Row="1" Grid.Column="0"></Label>

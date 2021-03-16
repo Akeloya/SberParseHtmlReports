@@ -127,6 +127,15 @@
   <data name="DataColumnTitle" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="DataPathDataTmpLabel" xml:space="preserve">
+    <value>Data content path</value>
+  </data>
+  <data name="DataPathRestLabel" xml:space="preserve">
+    <value>Cach balance path</value>
+  </data>
+  <data name="DataPathRootLabel" xml:space="preserve">
+    <value>Root table path</value>
+  </data>
   <data name="LICENSE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LICENSE;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

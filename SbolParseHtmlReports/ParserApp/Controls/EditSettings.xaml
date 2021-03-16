@@ -22,7 +22,23 @@
             <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0" Header="Основные пути">
-            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"></ColumnDefinition>
+                    <ColumnDefinition Width="60*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="{Binding Source={StaticResource Strings},Path=DataPathRootLabel}"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="{Binding Source={StaticResource Strings},Path=DataPathDataTmpLabel}"></Label>
+                <Label Grid.Row="2" Grid.Column="0" Content="{Binding Source={StaticResource Strings},Path=DataPathRestLabel}"></Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding RootTableXpath}" Margin="2"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DataXPath}" Margin="2"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RestXPath}" Margin="2"></TextBox>
+            </Grid>
         </GroupBox>
         <local:DataColumnEdit Grid.Row="1" Header="Название"  DataContext="{Binding Title}">
             

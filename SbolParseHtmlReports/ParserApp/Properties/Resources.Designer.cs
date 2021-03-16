@@ -89,6 +89,33 @@ namespace ParserApp.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Data content path.
+        /// </summary>
+        public static string DataPathDataTmpLabel {
+            get {
+                return ResourceManager.GetString("DataPathDataTmpLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Cach balance path.
+        /// </summary>
+        public static string DataPathRestLabel {
+            get {
+                return ResourceManager.GetString("DataPathRestLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Root table path.
+        /// </summary>
+        public static string DataPathRootLabel {
+            get {
+                return ResourceManager.GetString("DataPathRootLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
         public static byte[] LICENSE {

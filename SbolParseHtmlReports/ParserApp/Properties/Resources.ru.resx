@@ -123,6 +123,15 @@
   <data name="DataColumnTitle" xml:space="preserve">
     <value>Название</value>
   </data>
+  <data name="DataPathDataTmpLabel" xml:space="preserve">
+    <value>Путь к контейнеру данных</value>
+  </data>
+  <data name="DataPathRestLabel" xml:space="preserve">
+    <value>Путь к остатку на начало месяца</value>
+  </data>
+  <data name="DataPathRootLabel" xml:space="preserve">
+    <value>Путь к таблице с транзакциями</value>
+  </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Парсер html отчетов SBOL </value>
   </data>
