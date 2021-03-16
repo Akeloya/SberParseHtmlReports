@@ -14,6 +14,8 @@
         <CommandBinding Command="Close" Executed="Close_Executed"></CommandBinding>
         <CommandBinding Command="{x:Static local:AppCommands.About}" Executed="About_Executed"></CommandBinding>
         <CommandBinding Command="{x:Static local:AppCommands.OpenSettings}" Executed="OpenSettings_Executed"></CommandBinding>
+        <CommandBinding Command="{x:Static local:AppCommands.OpenHtmlFile}" Executed="OpenHtmlFile_Executed"></CommandBinding>
+        <CommandBinding Command="{x:Static local:AppCommands.OpenCsvFile}" Executed="OpenCsvFile_Executed"></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -22,17 +24,23 @@
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemFile}">
-                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemOpenHtmlFile}"></MenuItem>
-                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemOpenCsvFile}"></MenuItem>
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemOpenHtmlFile}" 
+                          Command="{x:Static local:AppCommands.OpenHtmlFile}"></MenuItem>
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemOpenCsvFile}" 
+                          Command="{x:Static local:AppCommands.OpenCsvFile}"></MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemClose}" Command="Close"></MenuItem>
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemClose}" 
+                          Command="Close"></MenuItem>
             </MenuItem>
             <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemSettings}">
-                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemImportSettings}" Command="{x:Static local:AppCommands.OpenSettings}"></MenuItem>
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemImportSettings}" 
+                          Command="{x:Static local:AppCommands.OpenSettings}"></MenuItem>
             </MenuItem>
             <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemHelpRoot}">
-                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemHelp}" Command="Help"></MenuItem>
-                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemAbout}" Command="{x:Static local:AppCommands.About}"></MenuItem>
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemHelp}" 
+                          Command="Help"></MenuItem>
+                <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemAbout}" 
+                          Command="{x:Static local:AppCommands.About}"></MenuItem>
             </MenuItem>
         </Menu>
         <DataGrid Grid.Row="1">

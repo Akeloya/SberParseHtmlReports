@@ -34,5 +34,15 @@ namespace ParserApp
         {
             AppWindows.OpenSettings();
         }
+
+        private void OpenHtmlFile_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        private void OpenCsvFile_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
     }
 }
