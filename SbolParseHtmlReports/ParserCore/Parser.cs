@@ -78,44 +78,28 @@ namespace ParserCore
         private StringBuilder BuildRow(CardOperation operation)
         {
             var sb = new StringBuilder();
-            sb.Append(operation.RowNumber)
-                .Append(_delimetr)
-                .Append(operation.Date)
-                .Append(_delimetr)
-                .Append(operation.ProcessDate)
-                .Append(_delimetr)
-                .Append(operation.Category)
-                .Append(_delimetr)
-                .Append(operation.Summ)
-                .Append(_delimetr)
-                .Append(operation.BalanceAfter)
-                .Append(_delimetr)
-                .Append(operation.Title)
-                .Append(_delimetr)
-                .Append(operation.Location)
-                .Append(_delimetr);
+            sb.Append(operation.RowNumber).Append(_delimetr)
+                .Append(operation.Date).Append(_delimetr)
+                .Append(operation.ProcessDate).Append(_delimetr)
+                .Append(operation.Category).Append(_delimetr)
+                .Append(operation.Summ).Append(_delimetr)
+                .Append(operation.BalanceAfter).Append(_delimetr)
+                .Append(operation.Title).Append(_delimetr)
+                .Append(operation.Location).Append(_delimetr);
             return sb;
         }
 
         private StringBuilder BuildHeader()
         {
             var headerSb = new StringBuilder();
-            headerSb.Append("N#")
-                .Append(_delimetr)
-                .Append(_dataSet.Date.Name)
-                .Append(_delimetr)
-                .Append(_dataSet.DateProceed.Name)
-                .Append(_delimetr)
-                .Append(_dataSet.Category.Name)
-                .Append(_delimetr)
-                .Append(_dataSet.Summ.Name)
-                .Append(_delimetr)
-                .Append(_dataSet.BalanceArter.Name)
-                .Append(_delimetr)
-                .Append(_dataSet.Title.Name)
-                .Append(_delimetr)
-                .Append(_dataSet.Location.Name)
-                .Append(_delimetr);
+            headerSb.Append("N#").Append(_delimetr)
+                .Append(_dataSet.Date.Name).Append(_delimetr)
+                .Append(_dataSet.DateProceed.Name).Append(_delimetr)
+                .Append(_dataSet.Category.Name).Append(_delimetr)
+                .Append(_dataSet.Summ.Name).Append(_delimetr)
+                .Append(_dataSet.BalanceArter.Name).Append(_delimetr)
+                .Append(_dataSet.Title.Name).Append(_delimetr)
+                .Append(_dataSet.Location.Name).Append(_delimetr);
             return headerSb;
         }
 
