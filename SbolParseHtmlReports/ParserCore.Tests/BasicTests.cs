@@ -7,7 +7,7 @@ namespace ParserCore.Tests
 {
     public class BasicTests
     {
-        private const string _fileNames = "D:\\TestsData";
+        private const string _fileNames = "H:\\TestsData";
         private const string _outFileName = "result.csv";
         [Fact]
         public void TestParse()

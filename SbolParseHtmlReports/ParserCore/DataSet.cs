@@ -22,13 +22,13 @@ namespace ParserCore
             DataXPath = "//div[contains(@class,'trs_it')]";
             RootTableXpath = "//div[contains(@class,'b-trs')]";
             RestXPath = "//*[contains(@class,'state_list')]/li[1]/div[2]";
-            Title = new DataColumn("Название операции", ".//div/div[1]");
-            Category = new DataColumn("Категория", ".//*[contains(@class,'icat')]");
-            Date = new DataColumn("Дата операции", ".//div[contains(@class,'trs_date')]");
-            Summ = new DataColumn("Сумма", ".//div[contains(@class,'trs_sum')]");
-            BalanceArter = new DataColumn("Остаток на карте",null);
-            Location = new DataColumn("Место", "//span[contains(@class,'trs_country')]");
-            DateProceed = new DataColumn("Дата проведения", "//span[contains(@class,'idate')]");
+            Title = new DataColumn("Название операции", ".//div/div[1]", DataContainerType.InnerText);
+            Category = new DataColumn("Категория", ".//*[contains(@class,'icat')]", DataContainerType.InnerText);
+            Date = new DataColumn("Дата операции", ".//div[contains(@class,'trs_date')]/span", DataContainerType.Attribute, "data-date");
+            Summ = new DataColumn("Сумма", ".//div[contains(@class,'trs_sum')]", DataContainerType.InnerText);
+            BalanceArter = new DataColumn("Остаток на карте",null, DataContainerType.InnerText);
+            Location = new DataColumn("Место", "//span[contains(@class,'trs_country')]", DataContainerType.InnerText);
+            DateProceed = new DataColumn("Дата проведения", "//span[contains(@class,'idate')]", DataContainerType.Attribute, "data-date");
         }
 
         public static DataSet LoadSettings(string jsonPath)
