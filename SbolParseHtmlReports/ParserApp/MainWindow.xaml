@@ -43,15 +43,15 @@
                           Command="{x:Static local:AppCommands.About}"></MenuItem>
             </MenuItem>
         </Menu>
-        <DataGrid Grid.Row="1">
+        <DataGrid Grid.Row="1" x:Name="DgResult" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Дата"></DataGridTextColumn>
-                <DataGridTextColumn Header="Категория"></DataGridTextColumn>
-                <DataGridTextColumn Header="Название"></DataGridTextColumn>
-                <DataGridTextColumn Header="Сумма"></DataGridTextColumn>
-                <DataGridTextColumn Header="Остаток"></DataGridTextColumn>
-                <DataGridTextColumn Header="Место"></DataGridTextColumn>
-                <DataGridTextColumn Header="Проведено"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Date}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Категория" Binding="{Binding Category}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название" Binding="{Binding Title}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Summ}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Остаток" Binding="{Binding BalanceAfter}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Место" Binding="{Binding Location}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Проведено" Binding="{Binding ProcessDate}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -18,7 +18,7 @@ namespace ParserApp.Controls
     /// </summary>
     public partial class EditSettings : UserControl
     {
-        private string _settingsPath;
+        private readonly string _settingsPath;
         public EditSettings()
         {
             _settingsPath = App.GetSettingsPath();
