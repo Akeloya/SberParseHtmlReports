@@ -13,6 +13,7 @@
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="Close" Executed="Close_Executed"></CommandBinding>
+        <CommandBinding Command="Save" Executed="Save_Executed" CanExecute="Save_CanExecute"></CommandBinding>
         <CommandBinding Command="{x:Static local:AppCommands.About}" Executed="About_Executed"></CommandBinding>
         <CommandBinding Command="{x:Static local:AppCommands.OpenSettings}" Executed="OpenSettings_Executed"></CommandBinding>
         <CommandBinding Command="{x:Static local:AppCommands.OpenHtmlFile}" Executed="OpenHtmlFile_Executed"></CommandBinding>
@@ -29,6 +30,8 @@
                           Command="{x:Static local:AppCommands.OpenHtmlFile}"></MenuItem>
                 <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemOpenCsvFile}" 
                           Command="{x:Static local:AppCommands.OpenCsvFile}"></MenuItem>
+                <MenuItem Header="{Binding Source={StaticResource Strings}, Path=MenuItemSave}"
+                          Command="Save"></MenuItem>
                 <Separator></Separator>
                 <MenuItem Header="{Binding Source={StaticResource Strings},Path=MenuItemClose}" 
                           Command="Close"></MenuItem>
@@ -44,7 +47,9 @@
                           Command="{x:Static local:AppCommands.About}"></MenuItem>
             </MenuItem>
         </Menu>
-        <DataGrid Grid.Row="1" x:Name="DgResult" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" 
+                  ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:MainWindow}},
+                                        Path=Operations, Mode=OneWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата" Binding="{Binding Date}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Категория" Binding="{Binding Category}"></DataGridTextColumn>

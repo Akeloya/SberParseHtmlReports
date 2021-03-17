@@ -1,11 +1,13 @@
-﻿using Microsoft.Win32;
-using ParserApp.Controls;
+﻿using ParserApp.Controls;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using WpfExtendedControls;
 using ParserCore;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using System.Linq;
+using System.IO;
 
 namespace ParserApp
 {
@@ -14,6 +16,17 @@ namespace ParserApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Parser _parser;
+
+        public IEnumerable<CardOperation> Operations
+        {
+            get { return (IEnumerable<CardOperation>) GetValue(OperationsProperty); }
+            set { SetValue(OperationsProperty, value); }
+        }
+
+        public static readonly DependencyProperty OperationsProperty = DependencyProperty.Register(nameof(Operations),
+            typeof(IEnumerable<CardOperation>),
+            typeof(MainWindow));
         public MainWindow()
         {
             InitializeComponent();
@@ -41,19 +54,17 @@ namespace ParserApp
 
         private void OpenHtmlFile_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            var ofd = new OpenFileDialog
-            {
-                Filter = "(Html отчёт)|*.html"
-            };
+            var ofd = new CommonOpenFileDialog();
+            ofd.Filters.Add(new CommonFileDialogFilter("(Html отчёт)", "*.html"));
 
             var result = ofd.ShowDialog();
-            if(result == true)
+            if(result == CommonFileDialogResult.Ok)
             {
                 var fileName = ofd.FileName;
                 var ds = DataSet.LoadSettings(App.GetSettingsPath());
-                var parser = new Parser(fileName, ds, ';');
-                parser.RunParse();
-                DgResult.ItemsSource = parser.Operations;
+                _parser = new Parser(fileName, ds, ';');
+                _parser.RunParse();
+                Operations = _parser.Operations;
             }
         }
 
@@ -61,5 +72,27 @@ namespace ParserApp
         {
 
         }
+
+        private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var ofd = new CommonOpenFileDialog
+            {
+                IsFolderPicker = true,
+            };
+
+            var result = ofd.ShowDialog();
+            if (result == CommonFileDialogResult.Ok)
+            {
+                var fileName = Path.Combine(ofd.FileName, "result.csv");
+                _parser.Save(fileName);
+            }
+            
+        }
+
+        private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = _parser != null && _parser.Operations.Any();
+        }
+
     }
 }
