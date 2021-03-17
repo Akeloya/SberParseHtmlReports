@@ -1,14 +1,7 @@
 ﻿using ParserCore;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace ParserApp.Controls
@@ -29,7 +22,7 @@ namespace ParserApp.Controls
             }
             catch (FileNotFoundException)
             {
-                DataContext = new DataSet();
+                DataContext = DataSet.LoadDefault();
             }
         }
 
@@ -40,7 +33,7 @@ namespace ParserApp.Controls
 
         private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            var obj = (DataSet)DataContext;
+            var obj = (IDataSet)DataContext;
             obj.Save(_settingsPath);
         }
     }

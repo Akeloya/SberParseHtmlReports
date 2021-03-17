@@ -10,12 +10,12 @@ namespace ParserCore
     public class Parser
     {
         private readonly string _path;
-        private DataSet _dataSet;
-        private static List<CardOperation> _operations = new List<CardOperation>();
-        private char _delimetr;
+        private readonly IDataSet _dataSet;
+        private readonly List<CardOperation> _operations = new List<CardOperation>();
+        private readonly char _delimetr;
         
         public IEnumerable<CardOperation> Operations => _operations;
-        public Parser(string path, DataSet ds, char delimetr)
+        public Parser(string path, IDataSet ds, char delimetr)
         {
             _path = path;
             _dataSet = ds;
@@ -128,17 +128,6 @@ namespace ParserCore
                     result = selectedNode.Attributes[col.AttributeName].Value;
             }
                 
-            if (!string.IsNullOrEmpty(result))
-                result = result.Trim();
-            return result;
-        }
-
-        private static string GetNodeValue(HtmlNode node, string path)
-        {
-            string result = null;
-            var selectedNode = node.SelectSingleNode(path);
-            if (selectedNode != null)
-                result = selectedNode.InnerText;
             if (!string.IsNullOrEmpty(result))
                 result = result.Trim();
             return result;

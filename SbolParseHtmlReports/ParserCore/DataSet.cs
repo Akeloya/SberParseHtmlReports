@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ParserCore
 {
-    public class DataSet
+    public class DataSet : IDataSet
     {
         public int EncodingPage { get; set; }
         public string DataXPath { get; set; }
@@ -19,22 +19,24 @@ namespace ParserCore
         public DataColumn Title { get; set; }
         public DataColumn BalanceArter { get; set; }
 
-        public DataSet()
+        public static IDataSet LoadDefault()
         {
-            EncodingPage = Encoding.UTF8.CodePage;
-            DataXPath = "//div[contains(@class,'trs_it')]";
-            RootTableXpath = "//div[contains(@class,'b-trs')]";
-            RestXPath = "//*[contains(@class,'state_list')]/li[1]/div[2]";
-            Title = new DataColumn("Название операции", ".//div/div[1]", DataContainerType.InnerText);
-            Category = new DataColumn("Категория", ".//*[contains(@class,'icat')]", DataContainerType.InnerText);
-            Date = new DataColumn("Дата операции", ".//div[contains(@class,'trs_date')]/span", DataContainerType.Attribute, "data-date");
-            Summ = new DataColumn("Сумма", ".//div[contains(@class,'trs_sum')]", DataContainerType.InnerText);
-            BalanceArter = new DataColumn("Остаток на карте",null, DataContainerType.InnerText);
-            Location = new DataColumn("Место", "//span[contains(@class,'trs_country')]", DataContainerType.InnerText);
-            DateProceed = new DataColumn("Дата проведения", "//span[contains(@class,'idate')]", DataContainerType.Attribute, "data-date");
+            return new DataSet
+            {
+                EncodingPage = Encoding.UTF8.CodePage,
+                DataXPath = "//div[contains(@class,'trs_it')]",
+                RootTableXpath = "//div[contains(@class,'b-trs')]",
+                RestXPath = "//*[contains(@class,'state_list')]/li[1]/div[2]",
+                Title = new DataColumn("Название операции", ".//div/div[1]", DataContainerType.InnerText),
+                Category = new DataColumn("Категория", ".//*[contains(@class,'icat')]", DataContainerType.InnerText),
+                Date = new DataColumn("Дата операции", ".//div[contains(@class,'trs_date')]/span", DataContainerType.Attribute, "data-date"),
+                Summ = new DataColumn("Сумма", ".//div[contains(@class,'trs_sum')]", DataContainerType.InnerText),
+                BalanceArter = new DataColumn("Остаток на карте", null, DataContainerType.InnerText),
+                Location = new DataColumn("Место", "//span[contains(@class,'trs_country')]", DataContainerType.InnerText),
+                DateProceed = new DataColumn("Дата проведения", "//span[contains(@class,'idate')]", DataContainerType.Attribute, "data-date")
+            };
         }
-
-        public static DataSet LoadSettings(string jsonPath)
+        public static IDataSet LoadSettings(string jsonPath)
         {
             if (!File.Exists(jsonPath))
                 throw new FileNotFoundException(Resource.SettingsFileNotFoundExceptionMessage, jsonPath);

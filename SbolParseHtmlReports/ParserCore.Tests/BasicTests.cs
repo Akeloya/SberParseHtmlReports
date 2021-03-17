@@ -15,7 +15,7 @@ namespace ParserCore.Tests
             var pathWithDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _outFileName);
             var files = Directory.GetFiles(_fileNames, "*.html");
 
-            var testDs = new DataSet();
+            var testDs = DataSet.LoadDefault();
             Assert.NotNull(testDs.DataXPath);
             Assert.NotNull(testDs.Title);
             Assert.NotNull(testDs.Category);
@@ -52,7 +52,7 @@ namespace ParserCore.Tests
             const string jsonFileName = "settings.json";
 
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, jsonFileName);
-            var ds = new DataSet();
+            var ds = DataSet.LoadDefault();
             ds.Save(path);
 
             var checkDs = DataSet.LoadSettings(path);
