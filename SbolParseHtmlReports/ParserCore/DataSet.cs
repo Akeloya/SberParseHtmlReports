@@ -7,7 +7,7 @@ namespace ParserCore
 {
     public class DataSet
     {
-        public string EncodingValue { get; set; }
+        public int EncodingPage { get; set; }
         public string DataXPath { get; set; }
         public string RestXPath { get; set; }
         public string RootTableXpath { get; set; }
@@ -21,7 +21,7 @@ namespace ParserCore
 
         public DataSet()
         {
-            EncodingValue = Encoding.UTF8.EncodingName;
+            EncodingPage = Encoding.UTF8.CodePage;
             DataXPath = "//div[contains(@class,'trs_it')]";
             RootTableXpath = "//div[contains(@class,'b-trs')]";
             RestXPath = "//*[contains(@class,'state_list')]/li[1]/div[2]";

@@ -25,7 +25,7 @@ namespace ParserCore
         public void RunParse()
         {
             var htmlDoc = new HtmlDocument();
-            var encoding = Encoding.GetEncoding(_dataSet.EncodingValue);
+            var encoding = Encoding.GetEncoding(_dataSet.EncodingPage);
             htmlDoc.Load(_path, encoding);
 
             var root = htmlDoc.DocumentNode.SelectSingleNode(_dataSet.RootTableXpath);
@@ -45,16 +45,19 @@ namespace ParserCore
 
         private decimal GetDecimalFromString(string sumStr)
         {
+            if (string.IsNullOrEmpty(sumStr))
+                return 0;
+            var str = sumStr.ToList();
             if (!string.IsNullOrEmpty(sumStr))
-                for (var i = 0; i < sumStr.Length;)
+                for (var i = 0; i < str.Count;)
                 {
-                    if (!_digitChars.Contains(sumStr[i]))
-                        sumStr = sumStr.Remove(i);
+                    if (!_digitChars.Contains(str[i]))
+                        str.RemoveAt(i);
                     else
                         i++;
                 }
-
-            return decimal.Parse(sumStr ?? "0");
+            var result = new string(str.ToArray());
+            return decimal.Parse(result);
         }
 
         public void Save(string filePath)
