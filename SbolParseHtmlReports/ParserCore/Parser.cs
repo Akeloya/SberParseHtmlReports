@@ -1,8 +1,6 @@
 ﻿using HtmlAgilityPack;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace ParserCore
@@ -15,6 +13,13 @@ namespace ParserCore
         private readonly char _delimetr;
         
         public IEnumerable<CardOperation> Operations => _operations;
+        public Parser(string path, string settingsPath, char delimetr)
+        {
+            _path = path;
+            _dataSet = DataSet.LoadSettings(settingsPath);
+            _delimetr = delimetr;
+        }
+
         public Parser(string path, IDataSet ds, char delimetr)
         {
             _path = path;

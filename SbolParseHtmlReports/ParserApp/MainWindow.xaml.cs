@@ -64,8 +64,7 @@ namespace ParserApp
             if(result == CommonFileDialogResult.Ok)
             {
                 var fileName = ofd.FileName;
-                var ds = DataSet.LoadSettings(App.GetSettingsPath());
-                _parser = new Parser(fileName, ds, ';');
+                _parser = new Parser(fileName, App.GetSettingsPath(), ';');
                 _parser.RunParse();
                 Operations = _parser.Operations;
             }
