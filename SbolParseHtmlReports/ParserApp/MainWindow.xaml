@@ -3,12 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ParserApp"
+        xmlns:local="clr-namespace:ParserApp" 
+        xmlns:controls="clr-namespace:ParserApp.Controls"
         mc:Ignorable="d"
         Height="450" Width="800"
         Title="{Binding Source={StaticResource Strings}, Path=MainWindowTitle}">
     <Window.Resources>
-        
+        <controls:NumberSignConverter x:Key="SignConverter"></controls:NumberSignConverter>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="Close" Executed="Close_Executed"></CommandBinding>
@@ -53,6 +54,18 @@
                 <DataGridTextColumn Header="Место" Binding="{Binding Location}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Проведено" Binding="{Binding ProcessDate}"></DataGridTextColumn>
             </DataGrid.Columns>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Summ, Converter={StaticResource SignConverter}}" Value="-1">
+                            <Setter Property="Background" Value="LightPink"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Summ, Converter={StaticResource SignConverter}}" Value="1">
+                            <Setter Property="Background" Value="LightGreen"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
         </DataGrid>
     </Grid>
 </Window>
