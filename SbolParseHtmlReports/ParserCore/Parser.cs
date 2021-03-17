@@ -25,7 +25,8 @@ namespace ParserCore
         public void RunParse()
         {
             var htmlDoc = new HtmlDocument();
-            htmlDoc.Load(_path);
+            var encoding = Encoding.GetEncoding(_dataSet.EncodingValue);
+            htmlDoc.Load(_path, encoding);
 
             var root = htmlDoc.DocumentNode.SelectSingleNode(_dataSet.RootTableXpath);
             var sumStr = htmlDoc.DocumentNode.SelectSingleNode(_dataSet.RestXPath).InnerText?.Trim();
