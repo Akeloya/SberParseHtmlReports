@@ -38,7 +38,7 @@ namespace ParserCore
                 var nodes = root.SelectNodes(_dataSet.DataXPath);
                 foreach (var node in nodes)
                 {
-                    rest = GetValues(rest, rowNum, node);
+                    rest = GetValues(rest, rowNum++, node);
                 }
             }
         }
