@@ -166,6 +166,9 @@
   <data name="MenuItemOpenHtmlFile" xml:space="preserve">
     <value>Open Html report</value>
   </data>
+  <data name="MenuItemSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="MenuItemSettings" xml:space="preserve">
     <value>Settings</value>
   </data>

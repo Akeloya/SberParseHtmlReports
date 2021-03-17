@@ -207,6 +207,15 @@ namespace ParserApp.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Save.
+        /// </summary>
+        public static string MenuItemSave {
+            get {
+                return ResourceManager.GetString("MenuItemSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Settings.
         /// </summary>
         public static string MenuItemSettings {

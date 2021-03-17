@@ -159,6 +159,9 @@
   <data name="MenuItemOpenHtmlFile" xml:space="preserve">
     <value>Открыть html отчет</value>
   </data>
+  <data name="MenuItemSave" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
   <data name="MenuItemSettings" xml:space="preserve">
     <value>Настройки</value>
   </data>
