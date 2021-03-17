@@ -42,7 +42,10 @@ namespace ParserCore
                 }
             }
         }
-
+        /// <summary>
+        /// Saves data to file
+        /// </summary>
+        /// <param name="filePath">full path with file name and extension</param>
         public void Save(string filePath)
         {
             if (_operations.Count > 0)
