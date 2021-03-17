@@ -11,9 +11,9 @@ namespace ParserCore
     {
         private readonly string _path;
         private DataSet _dataSet;
-        private List<CardOperation> _operations = new List<CardOperation>();
+        private static List<CardOperation> _operations = new List<CardOperation>();
         private char _delimetr;
-        private readonly char[] _digitChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', ',' };
+        
         public IEnumerable<CardOperation> Operations => _operations;
         public Parser(string path, DataSet ds, char delimetr)
         {
@@ -30,7 +30,7 @@ namespace ParserCore
 
             var root = htmlDoc.DocumentNode.SelectSingleNode(_dataSet.RootTableXpath);
             var sumStr = htmlDoc.DocumentNode.SelectSingleNode(_dataSet.RestXPath).InnerText?.Trim();
-            var rest = GetDecimalFromString(sumStr);
+            var rest = sumStr.AsDecimal();
             
             if (root != null)
             {
@@ -41,23 +41,6 @@ namespace ParserCore
                     rest = GetValues(rest, rowNum, node);
                 }
             }
-        }
-
-        private decimal GetDecimalFromString(string sumStr)
-        {
-            if (string.IsNullOrEmpty(sumStr))
-                return 0;
-            var str = sumStr.ToList();
-            if (!string.IsNullOrEmpty(sumStr))
-                for (var i = 0; i < str.Count;)
-                {
-                    if (!_digitChars.Contains(str[i]))
-                        str.RemoveAt(i);
-                    else
-                        i++;
-                }
-            var result = new string(str.ToArray());
-            return decimal.Parse(result);
         }
 
         public void Save(string filePath)
@@ -114,21 +97,17 @@ namespace ParserCore
             if (sumNode.FirstChild.Attributes["class"].Value == "trs_st-refill")
                 factor = 1;
 
-            var currSumStr = GetNodeValue(node, ".//*[contains(@class, 'trs_sum-am')]");
-            var sum = GetDecimalFromString(currSumStr);
-            var date = GetNodeValue(node, _dataSet.Date);
-            var opDate = GetNodeValue(node, _dataSet.DateProceed);
-
-            rest += factor * sum;
+            var sum = GetNodeValue(node, _dataSet.Summ).AsDecimal() * factor;
+            rest += sum;
             _operations.Add(new CardOperation
             {
                 RowNumber = rowNum,
                 Title = GetNodeValue(node, _dataSet.Title),
                 Category = GetNodeValue(node, _dataSet.Category),
-                Date = DateTime.Parse(date),
+                Date = GetNodeValue(node, _dataSet.Date).AsDate(),
                 Location = GetNodeValue(node, _dataSet.Location),
-                ProcessDate = DateTime.Parse(opDate),
-                Summ = sum * factor,
+                ProcessDate = GetNodeValue(node, _dataSet.DateProceed).AsDate(),
+                Summ = sum,
                 BalanceAfter = rest
             });
             return rest;
