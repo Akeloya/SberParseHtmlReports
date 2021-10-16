@@ -13,7 +13,7 @@ namespace ParserApp.Controls
         {
             var wnd = new Window
             {
-                Height = 600,
+                Height = 700,
                 Width = 400,
                 Title = Properties.Resources.WndTitleEditSettings,
                 Content = new EditSettings()

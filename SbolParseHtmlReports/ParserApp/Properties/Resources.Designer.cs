@@ -89,6 +89,15 @@ namespace ParserApp.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Container type.
+        /// </summary>
+        public static string DataColumnType {
+            get {
+                return ResourceManager.GetString("DataColumnType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Data content path.
         /// </summary>
         public static string DataPathDataTmpLabel {
@@ -112,6 +121,15 @@ namespace ParserApp.Properties {
         public static string DataPathRootLabel {
             get {
                 return ResourceManager.GetString("DataPathRootLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на File code page.
+        /// </summary>
+        public static string EncodingPage {
+            get {
+                return ResourceManager.GetString("EncodingPage", resourceCulture);
             }
         }
         

@@ -5,13 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ParserApp.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="600">
+             d:DesignHeight="680" d:DesignWidth="600">
     <UserControl.CommandBindings>
         <CommandBinding Command="Close" Executed="Close_Executed"></CommandBinding>
         <CommandBinding Command="Save" Executed="Save_Executed"></CommandBinding>
     </UserControl.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
@@ -40,22 +41,35 @@
                 <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RestXPath}" Margin="2"></TextBox>
             </Grid>
         </GroupBox>
-        <local:DataColumnEdit Grid.Row="1" Header="Название"  DataContext="{Binding Title}">
+        <GroupBox Header="Кодировка" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*"></ColumnDefinition>
+                    <ColumnDefinition Width="60*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="{Binding Source={StaticResource Strings},Path=EncodingPage}"></Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding EncodingPage}" Margin="2"></TextBox>
+            </Grid>
+        </GroupBox>
+        <local:DataColumnEdit Grid.Row="2" Header="Название"  DataContext="{Binding Title}">
             
         </local:DataColumnEdit>
-        <local:DataColumnEdit Grid.Row="2" Header="Сумма"  DataContext="{Binding Summ}">
+        <local:DataColumnEdit Grid.Row="3" Header="Сумма"  DataContext="{Binding Summ}">
 
         </local:DataColumnEdit>
-        <local:DataColumnEdit Grid.Row="3" Header="Дата"  DataContext="{Binding Date}">
+        <local:DataColumnEdit Grid.Row="4" Header="Дата"  DataContext="{Binding Date}">
 
         </local:DataColumnEdit>
-        <local:DataColumnEdit Grid.Row="4" Header="Категория" DataContext="{Binding Category}">
+        <local:DataColumnEdit Grid.Row="5" Header="Категория" DataContext="{Binding Category}">
 
         </local:DataColumnEdit>
-        <local:DataColumnEdit Grid.Row="5" Header="Местоположение"  DataContext="{Binding Location}">
+        <local:DataColumnEdit Grid.Row="6" Header="Местоположение"  DataContext="{Binding Location}">
 
         </local:DataColumnEdit>
-        <WrapPanel Grid.Row="7" ItemWidth="80" HorizontalAlignment="Right">
+        <WrapPanel Grid.Row="8" ItemWidth="80" HorizontalAlignment="Right">
             <Button Content="Сохранить" Margin="2" Command="Save"></Button>
             <Button Content="Закрыть" Margin="2" Command="Close"></Button>
         </WrapPanel>
