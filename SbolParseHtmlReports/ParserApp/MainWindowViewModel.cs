@@ -1,46 +1,46 @@
-﻿using ParserApp.Controls;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Input;
-using WpfExtendedControls;
-using ParserCore;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Windows.Controls;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Documents;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
+using Caliburn.Micro;
+
+using Microsoft.WindowsAPICodePack.Dialogs;
+
+using ParserApp.Controls;
+
+using ParserCore;
+
+using WpfExtendedControls;
+
+using Parser = ParserCore.Parser;
 
 namespace ParserApp
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public class MainWindowViewModel : Screen
     {
         private Parser _parser;
 
+        public MainWindowViewModel()
+        {
+            DisplayName = Properties.Resources.MainWindowTitle;
+        }
         public IEnumerable<CardOperation> Operations
         {
-            get { return (IEnumerable<CardOperation>) GetValue(OperationsProperty); }
-            set { SetValue(OperationsProperty, value); }
+            get;
+            set;
         }
 
-        public static readonly DependencyProperty OperationsProperty = DependencyProperty.Register(nameof(Operations),
-            typeof(IEnumerable<CardOperation>),
-            typeof(MainWindow));
-        public MainWindow()
+        public Task CloseAsync()
         {
-            InitializeComponent();
+            return TryCloseAsync();
         }
-
-        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void About_Executed(object sender, ExecutedRoutedEventArgs e)
+        
+        public Task AboutAsync()
         {
             var licenses = new List<LicenseInformation>
             {
@@ -48,14 +48,16 @@ namespace ParserApp
             };
             var ab = new AboutApp(licenses,null);
             ab.Show();
+            return Task.CompletedTask;
         }
 
-        private void OpenSettings_Executed(object sender, ExecutedRoutedEventArgs e)
+        public Task OpenSettingsAsync()
         {
             AppWindows.OpenSettings();
+            return Task.CompletedTask;
         }
 
-        private void OpenHtmlFile_Executed(object sender, ExecutedRoutedEventArgs e)
+        public Task OpenHtmlFileAsync()
         {
             var ofd = new CommonOpenFileDialog();
             ofd.Filters.Add(new CommonFileDialogFilter("(Html отчёт)", "*.html"));
@@ -68,14 +70,16 @@ namespace ParserApp
                 _parser.RunParse();
                 Operations = _parser.Operations;
             }
+
+                return Task.CompletedTask;
         }
 
-        private void OpenCsvFile_Executed(object sender, ExecutedRoutedEventArgs e)
+        public Task OpenCsvFileAsync()
         {
-            
+            return Task.CompletedTask;
         }
-
-        private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
+        public bool CanSave_CanExecute => _parser != null && _parser.Operations.Any();
+        public Task SaveAsync()
         {
             var ofd = new CommonOpenFileDialog
             {
@@ -88,15 +92,10 @@ namespace ParserApp
                 var fileName = Path.Combine(ofd.FileName, "result.csv");
                 _parser.Save(fileName);
             }
-            
+            return Task.CompletedTask;
         }
 
-        private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = _parser != null && _parser.Operations.Any();
-        }
-
-        private void Print_Executed(object sender, ExecutedRoutedEventArgs e)
+        public Task PrintAsync()
         {
             PrintDialog printDialog = new PrintDialog();
             if (printDialog.ShowDialog() == true)
@@ -148,6 +147,7 @@ namespace ParserApp
                 flowDoc.Blocks.Add(table);
                 printDialog.PrintDocument(((IDocumentPaginatorSource)flowDoc).DocumentPaginator, "Csv");
             }
+            return Task.CompletedTask;
         }
     }
 }

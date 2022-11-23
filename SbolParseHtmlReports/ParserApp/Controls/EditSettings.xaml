@@ -1,77 +1,125 @@
-﻿<UserControl x:Class="ParserApp.Controls.EditSettings"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ParserApp.Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="680" d:DesignWidth="600">
+﻿<UserControl
+    x:Class="ParserApp.Controls.EditSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ParserApp.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:ParserApp.Properties"
+    d:DesignHeight="680"
+    d:DesignWidth="600"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <res:Resources x:Key="Strings" />
+    </UserControl.Resources>
     <UserControl.CommandBindings>
-        <CommandBinding Command="Close" Executed="Close_Executed"></CommandBinding>
-        <CommandBinding Command="Save" Executed="Save_Executed"></CommandBinding>
+        <CommandBinding Command="Close" Executed="Close_Executed" />
+        <CommandBinding Command="Save" Executed="Save_Executed" />
     </UserControl.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="25" />
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0" Header="Основные пути">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40*"></ColumnDefinition>
-                    <ColumnDefinition Width="60*"></ColumnDefinition>
+                    <ColumnDefinition Width="40*" />
+                    <ColumnDefinition Width="60*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25"></RowDefinition>
-                    <RowDefinition Height="25"></RowDefinition>
-                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="{Binding Source={StaticResource Strings},Path=DataPathRootLabel}"></Label>
-                <Label Grid.Row="1" Grid.Column="0" Content="{Binding Source={StaticResource Strings},Path=DataPathDataTmpLabel}"></Label>
-                <Label Grid.Row="2" Grid.Column="0" Content="{Binding Source={StaticResource Strings},Path=DataPathRestLabel}"></Label>
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding RootTableXpath}" Margin="2"></TextBox>
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DataXPath}" Margin="2"></TextBox>
-                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RestXPath}" Margin="2"></TextBox>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Content="{Binding Source={StaticResource Strings}, Path=DataPathRootLabel}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Content="{Binding Source={StaticResource Strings}, Path=DataPathDataTmpLabel}" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Content="{Binding Source={StaticResource Strings}, Path=DataPathRestLabel}" />
+                <TextBox
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="2"
+                    Text="{Binding RootTableXpath}" />
+                <TextBox
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="2"
+                    Text="{Binding DataXPath}" />
+                <TextBox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="2"
+                    Text="{Binding RestXPath}" />
             </Grid>
         </GroupBox>
-        <GroupBox Header="Кодировка" Grid.Row="1">
+        <GroupBox Grid.Row="1" Header="Кодировка">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40*"></ColumnDefinition>
-                    <ColumnDefinition Width="60*"></ColumnDefinition>
+                    <ColumnDefinition Width="40*" />
+                    <ColumnDefinition Width="60*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="25" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="{Binding Source={StaticResource Strings},Path=EncodingPage}"></Label>
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding EncodingPage}" Margin="2"></TextBox>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Content="{Binding Source={StaticResource Strings}, Path=EncodingPage}" />
+                <TextBox
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="2"
+                    Text="{Binding EncodingPage}" />
             </Grid>
         </GroupBox>
-        <local:DataColumnEdit Grid.Row="2" Header="Название"  DataContext="{Binding Title}">
-            
-        </local:DataColumnEdit>
-        <local:DataColumnEdit Grid.Row="3" Header="Сумма"  DataContext="{Binding Summ}">
-
-        </local:DataColumnEdit>
-        <local:DataColumnEdit Grid.Row="4" Header="Дата"  DataContext="{Binding Date}">
-
-        </local:DataColumnEdit>
-        <local:DataColumnEdit Grid.Row="5" Header="Категория" DataContext="{Binding Category}">
-
-        </local:DataColumnEdit>
-        <local:DataColumnEdit Grid.Row="6" Header="Местоположение"  DataContext="{Binding Location}">
-
-        </local:DataColumnEdit>
-        <WrapPanel Grid.Row="8" ItemWidth="80" HorizontalAlignment="Right">
-            <Button Content="Сохранить" Margin="2" Command="Save"></Button>
-            <Button Content="Закрыть" Margin="2" Command="Close"></Button>
+        <local:DataColumnEdit
+            Grid.Row="2"
+            DataContext="{Binding Title}"
+            Header="Название" />
+        <local:DataColumnEdit
+            Grid.Row="3"
+            DataContext="{Binding Summ}"
+            Header="Сумма" />
+        <local:DataColumnEdit
+            Grid.Row="4"
+            DataContext="{Binding Date}"
+            Header="Дата" />
+        <local:DataColumnEdit
+            Grid.Row="5"
+            DataContext="{Binding Category}"
+            Header="Категория" />
+        <local:DataColumnEdit
+            Grid.Row="6"
+            DataContext="{Binding Location}"
+            Header="Местоположение" />
+        <WrapPanel
+            Grid.Row="8"
+            HorizontalAlignment="Right"
+            ItemWidth="80">
+            <Button
+                Margin="2"
+                Command="Save"
+                Content="Сохранить" />
+            <Button
+                Margin="2"
+                Command="Close"
+                Content="Закрыть" />
         </WrapPanel>
     </Grid>
 </UserControl>

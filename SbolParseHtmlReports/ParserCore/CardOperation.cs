@@ -2,7 +2,7 @@
 
 namespace ParserCore
 {
-    public class CardOperation
+    public record CardOperation
     {
         public int RowNumber { get; set; }
         public string Title { get; set; }

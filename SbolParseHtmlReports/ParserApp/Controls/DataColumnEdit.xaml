@@ -1,27 +1,54 @@
-﻿<GroupBox x:Class="ParserApp.Controls.DataColumnEdit"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ParserApp.Controls" xmlns:parsercore="clr-namespace:ParserCore;assembly=ParserCore"
-          mc:Ignorable="d" 
-             d:DesignHeight="80" d:DesignWidth="400">
+﻿<GroupBox
+    x:Class="ParserApp.Controls.DataColumnEdit"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:parsercore="clr-namespace:ParserCore;assembly=ParserCore"
+    xmlns:res="clr-namespace:ParserApp.Properties"
+    d:DesignHeight="80"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <GroupBox.Resources>
+        <res:Resources x:Key="Strings" />
+    </GroupBox.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"></ColumnDefinition>
-            <ColumnDefinition Width="60*"></ColumnDefinition>
+            <ColumnDefinition Width="40*" />
+            <ColumnDefinition Width="60*" />
         </Grid.ColumnDefinitions>
-        <Label Content="{Binding Source={StaticResource Strings},Path=DataColumnTitle}" Grid.Row="0" Grid.Column="0"></Label>
-        <Label Content="{Binding Source={StaticResource Strings},Path=DataColumnPath}" Grid.Row="1" Grid.Column="0"></Label>
-        <Label Content="{Binding Source={StaticResource Strings},Path=DataColumnType}" Grid.Row="2" Grid.Column="0"></Label>
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="2" Text="{Binding Name}"></TextBox>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding XPath}"></TextBox>
-        <ComboBox Grid.Row="2" Grid.Column="1" Margin="2" SelectedItem="{Binding ContainerType}">
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Content="{Binding Source={StaticResource Strings}, Path=DataColumnTitle}" />
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Content="{Binding Source={StaticResource Strings}, Path=DataColumnPath}" />
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Content="{Binding Source={StaticResource Strings}, Path=DataColumnType}" />
+        <TextBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="2"
+            Text="{Binding Name}" />
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="2"
+            Text="{Binding XPath}" />
+        <ComboBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="2"
+            SelectedItem="{Binding ContainerType}">
             <ComboBox.Items>
                 <parsercore:DataContainerType>InnerText</parsercore:DataContainerType>
                 <parsercore:DataContainerType>Attribute</parsercore:DataContainerType>
