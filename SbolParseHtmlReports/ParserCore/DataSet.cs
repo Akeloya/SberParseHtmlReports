@@ -2,6 +2,7 @@
 using ParserCore.Properties;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ParserCore
 {
@@ -45,12 +46,22 @@ namespace ParserCore
             return obj;
         }
 
+        public static Task<IDataSet> LoadAsync(string jsonPath)
+        {
+            return Task.Run(() => LoadSettings(jsonPath));
+        }
+
         public void Save(string jsonPath)
         {
             var json = JsonConvert.SerializeObject(this);
             if (File.Exists(jsonPath))
                 File.Delete(jsonPath);
             File.WriteAllText(jsonPath, json);
+        }
+
+        public Task SaveAsync(string jsonPath)
+        {
+            return Task.Run(()=> Save(jsonPath));
         }
     }
 }

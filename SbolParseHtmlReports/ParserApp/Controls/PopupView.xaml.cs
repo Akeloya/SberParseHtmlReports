@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ParserApp.Controls
 {
     /// <summary>
-    /// Логика взаимодействия для DataColumnEdit.xaml
+    /// Interaction logic for PopupView.xaml
     /// </summary>
-    public partial class DataColumnEdit : GroupBox
+    public partial class PopupView : UserControl
     {
-        public DataColumnEdit()
+        public PopupView()
         {
             InitializeComponent();
         }

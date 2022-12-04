@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Caliburn.Micro;
 using Ninject;
 
+using ParserApp.Services;
+
 namespace ParserApp
 {
     public class Bootstrapper : BootstrapperBase
@@ -18,6 +20,7 @@ namespace ParserApp
             base.Configure();
             _kernel.Rebind<IWindowManager>().To<WindowManager>().InSingletonScope();
             _kernel.Bind<MainWindowViewModel>().ToSelf().InSingletonScope();
+            _kernel.Bind<IDialogService>().To<DialogService>().InSingletonScope();
         }
 
         protected override object GetInstance(Type service, string Key){

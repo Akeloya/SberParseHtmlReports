@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Threading.Tasks;
 
 namespace ParserCore
 {
@@ -18,5 +16,6 @@ namespace ParserCore
         DataColumn Title { get; set; }
         DataColumn BalanceArter { get; set; }
         void Save(string jsonPath);
+        Task SaveAsync(string jsonPath);
     }
 }

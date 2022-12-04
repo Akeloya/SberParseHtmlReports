@@ -1,7 +1,9 @@
 ﻿using HtmlAgilityPack;
+
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ParserCore
 {
@@ -11,7 +13,7 @@ namespace ParserCore
         private readonly IDataSet _dataSet;
         private readonly List<CardOperation> _operations = new List<CardOperation>();
         private readonly char _delimetr;
-        
+
         public IEnumerable<CardOperation> Operations => _operations;
         public Parser(string path, string settingsPath, char delimetr)
         {
@@ -36,7 +38,7 @@ namespace ParserCore
             var root = htmlDoc.DocumentNode.SelectSingleNode(_dataSet.RootTableXpath);
             var sumStr = htmlDoc.DocumentNode.SelectSingleNode(_dataSet.RestXPath).InnerText?.Trim();
             var rest = sumStr.AsDecimal();
-            
+
             if (root != null)
             {
                 int rowNum = 1;
@@ -53,21 +55,39 @@ namespace ParserCore
         /// <param name="filePath">full path with file name and extension</param>
         public void Save(string filePath)
         {
-            if (_operations.Count > 0)
-            {
-                if (File.Exists(filePath))
-                    File.Delete(filePath);
-                var file = File.AppendText(filePath);
-                StringBuilder headerSb = BuildHeader();
-                file.WriteLine(headerSb);
+            if (_operations.Count <= 0)
+                return;
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+            using var file = File.AppendText(filePath);
+            StringBuilder headerSb = BuildHeader();
+            file.WriteLine(headerSb);
 
-                foreach (var operation in _operations)
-                {
-                    StringBuilder sb = BuildRow(operation);
-                    file.WriteLine(sb);
-                }
-                file.Close();
+            foreach (var operation in _operations)
+            {
+                StringBuilder sb = BuildRow(operation);
+                file.WriteLine(sb);
             }
+            file.Close();
+        }
+
+        public async Task SaveAsync(string filePath)
+        {
+            if (_operations.Count <= 0)
+                return;
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+
+            using var file = File.AppendText(filePath);
+            StringBuilder headerSb = BuildHeader();
+            await file.WriteLineAsync(headerSb.ToString());
+
+            foreach (var operation in _operations)
+            {
+                StringBuilder sb = BuildRow(operation);
+                await file.WriteLineAsync(sb.ToString());
+            }
+            file.Close();
         }
 
         private StringBuilder BuildRow(CardOperation operation)
@@ -99,7 +119,7 @@ namespace ParserCore
         }
 
         private decimal GetValues(decimal rest, int rowNum, HtmlNode node)
-        {            
+        {
             var sumNode = node.SelectSingleNode(_dataSet.Summ.XPath);
             var factor = -1;
             if (sumNode.FirstChild.Attributes["class"].Value == "trs_st-refill")
@@ -132,7 +152,7 @@ namespace ParserCore
                 else
                     result = selectedNode.Attributes[col.AttributeName].Value;
             }
-                
+
             if (!string.IsNullOrEmpty(result))
                 result = result.Trim();
             return result;

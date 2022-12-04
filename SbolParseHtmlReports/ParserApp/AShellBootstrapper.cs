@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Caliburn.Micro;
+
 using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using Caliburn.Micro;
 
 namespace ParserApp
 {
@@ -31,7 +27,7 @@ namespace ParserApp
             settings.Height = 500;
             settings.Width = 800;
             settings.SizeToContent = SizeToContent.Manual;
-            manager.ShowWindowAsync(inst,settings: settings);
+            manager.ShowWindowAsync(inst, settings: settings);
         }
     }
 }
