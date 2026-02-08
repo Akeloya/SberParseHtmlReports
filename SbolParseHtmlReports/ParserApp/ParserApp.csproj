@@ -4,10 +4,9 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ParserApp</RootNamespace>
     <AssemblyName>ParserApp</AssemblyName>
-	<UseWPF>true</UseWPF>
-    <TargetFramework>net48</TargetFramework>
-    <FileAlignment>512</FileAlignment>
-    <WarningLevel>4</WarningLevel>
+	  <UseWPF>true</UseWPF>
+    <TargetFramework>net48</TargetFramework>        
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Credit_Card.ico</ApplicationIcon>
