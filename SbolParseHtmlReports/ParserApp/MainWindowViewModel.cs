@@ -1,7 +1,5 @@
 ﻿using Caliburn.Micro;
 
-using Microsoft.WindowsAPICodePack.Dialogs;
-
 using ParserApp.Controls;
 using ParserApp.Services;
 
@@ -14,7 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 
@@ -56,15 +53,17 @@ namespace ParserApp
             return _dialogService.ShowAsync(new EditSettingsViewModel());
         }
 
-        public Task OpenHtmlFileAsync()
+        public async Task OpenHtmlFileAsync()
         {
-            return _dialogService.OpenFileDialog("Выберите отчёт", "Отчеты СБОЛ", "*.html;*.pdf", (fileName) =>
+
+            await _dialogService.OpenFileDialog("Выберите отчёт", "Отчеты СБОЛ", "*.html;*.pdf", async (fileName) =>
             {
+                var vm = new EnterCardNameViewModel();
+                await _dialogService.ShowAsync(vm);
                 _parser = Parser.Get(fileName, App.GetSettingsPath(), ';');
-                _parser.RunParse();
+                _parser.RunParse(vm.CardName);
                 Operations = new BindableCollection<CardOperation>(_parser.Operations);
                 NotifyOfPropertyChange(nameof(Operations));
-                return Task.CompletedTask;
             });
         }
 

@@ -66,7 +66,7 @@ namespace ParserCore
         }
 
         public IEnumerable<CardOperation> Operations => _operations;
-        public abstract void RunParse();
+        public abstract void RunParse(string cardName = null);
         /// <summary>
         /// Saves data to file
         /// </summary>

@@ -1,6 +1,5 @@
 ﻿using HtmlAgilityPack;
 
-using System.Collections.Generic;
 using System.Text;
 
 namespace ParserCore
@@ -15,7 +14,7 @@ namespace ParserCore
         {
         }
 
-        public override void RunParse()
+        public override void RunParse(string cardName = null)
         {
             var htmlDoc = new HtmlDocument();
             var encoding = Encoding.GetEncoding(_dataSet.EncodingPage);
@@ -31,12 +30,12 @@ namespace ParserCore
                 var nodes = root.SelectNodes(_dataSet.DataXPath);
                 foreach (var node in nodes)
                 {
-                    rest = GetValues(rest, rowNum++, node);
+                    rest = GetValues(rest, rowNum++, node, cardName);
                 }
             }
         }
 
-        private decimal GetValues(decimal rest, int rowNum, HtmlNode node)
+        private decimal GetValues(decimal rest, int rowNum, HtmlNode node, string cardName)
         {
             var sumNode = node.SelectSingleNode(_dataSet.Summ.XPath);
             var factor = -1;
@@ -54,7 +53,8 @@ namespace ParserCore
                 Location = GetNodeValue(node, _dataSet.Location),
                 ProcessDate = GetNodeValue(node, _dataSet.DateProceed).AsDate(),
                 Summ = sum,
-                BalanceAfter = rest
+                BalanceAfter = rest,
+                CardName = cardName
             });
             return rest;
         }

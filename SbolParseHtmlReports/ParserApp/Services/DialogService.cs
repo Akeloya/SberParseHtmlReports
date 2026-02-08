@@ -29,9 +29,9 @@ namespace ParserApp.Services
         {
             _manager = manager;
         }
-        public Task ShowAsync(object model)
+        public async Task ShowAsync(object model)
         {
-            return _manager.ShowDialogAsync(model);
+            await Execute.OnUIThreadAsync(() => _manager.ShowDialogAsync(model));
         }
 
         public Task ShowErrorAsync(object model)

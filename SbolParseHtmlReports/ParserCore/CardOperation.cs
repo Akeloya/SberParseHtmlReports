@@ -12,5 +12,6 @@ namespace ParserCore
         public DateTime ProcessDate { get; set; }
         public decimal BalanceAfter { get; set; }
         public string Category { get; set; }
+        public string CardName { get; set; }
     }
 }

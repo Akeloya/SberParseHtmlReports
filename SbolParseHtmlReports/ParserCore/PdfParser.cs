@@ -22,14 +22,14 @@ namespace ParserCore
 
         }
 
-        public override void RunParse()
+        public override void RunParse(string cardName = null)
         {
             _operations.Clear();
             using var pdfReader = new PdfReader(_path);
-            using PdfDocument d = new PdfDocument(pdfReader);
+            using PdfDocument d = new(pdfReader);
             using var doc = new Document(d);
 
-            Rectangle rect = new Rectangle(0, 0, 1000, 1000);
+            Rectangle rect = new(0, 0, 1000, 1000);
 
             var fontFilter = new TextRegionEventFilter(rect);
 
@@ -38,14 +38,14 @@ namespace ParserCore
             var pages = d.GetPageLabels();
             for (var i = 1; i <= d.GetNumberOfPages(); i++)
             {
-                FilteredEventListener listener = new FilteredEventListener();
+                FilteredEventListener listener = new();
                 LocationTextExtractionStrategy extractionStrategy = listener
                     .AttachEventListener(new LocationTextExtractionStrategy(), fontFilter);
                 PdfCanvasProcessor parser = new(listener);
                 var page = d.GetPage(i);
                 parser.ProcessPageContent(page);
                 string actualText = extractionStrategy.GetResultantText();
-                File.AppendAllText(tempFile, actualText);                
+                File.AppendAllText(tempFile, actualText);
             }
             doc.Close();
 
@@ -84,32 +84,40 @@ namespace ParserCore
 
                 var operationDate = date + time;
                 var destination = parts[3];
-                var destCard = string.Empty;
-                var sourceCard = string.Empty;
                 for (var i = 4; i < parts.Length - 2; i++)
                 {
                     destination += " " + parts[i];
                 }
 
+                decimal balanceAfter = 0;
+                if (parts.Length >= 5 && decimal.TryParse(parts[5], out var balanceAfterParsed))
+                {
+                    balanceAfter = balanceAfterParsed;
+                }
+                var resultCard = cardName;
                 if (destination.Contains("Перевод", StringComparison.InvariantCultureIgnoreCase))
                 {
                     var notParsedDest = allLines[lineNumber + 1].Replace(((char)160).ToString(), "");
                     var notParsedSplit = notParsedDest.Split([" "], StringSplitOptions.RemoveEmptyEntries);
                     for (var i = 0; i < notParsedSplit.Length; i++)
                     {
-                        if (notParsedSplit[i].Contains("карту", StringComparison.InvariantCultureIgnoreCase))
-                            destCard = notParsedSplit[i + 1];
-                        if (notParsedSplit[i].Contains("карты", StringComparison.InvariantCultureIgnoreCase))
-                            sourceCard = notParsedSplit[i + 1];
+                        if (string.IsNullOrWhiteSpace(notParsedSplit[i]))
+                            continue;
+                        if (notParsedSplit[i].Contains("карту", StringComparison.InvariantCultureIgnoreCase) && !string.IsNullOrWhiteSpace(notParsedSplit[i + 1]))
+                            resultCard = notParsedSplit[i + 1];
+                        else if (notParsedSplit[i].Contains("карты", StringComparison.InvariantCultureIgnoreCase) && !string.IsNullOrWhiteSpace(notParsedSplit[i + 1]))
+                            resultCard = notParsedSplit[i + 1];
                     }
                 }
+                                
                 var operation = new CardOperation()
                 {
-                    Date =operationDate,
+                    Date = operationDate,
                     Summ = (decimal)amount,
                     RowNumber = lineNumber + 1,
                     Category = destination,
-                    
+                    BalanceAfter = balanceAfter,
+                    CardName = resultCard
                 };
                 _operations.Add(operation);
                 ///"ДАТА\tОперация\tСумма\tОстаток\tКарта\tСчёт\tПриход\tРасход"
