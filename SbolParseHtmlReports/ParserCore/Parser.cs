@@ -11,7 +11,7 @@ namespace ParserCore
     {
         private readonly string _path;
         private readonly IDataSet _dataSet;
-        private readonly List<CardOperation> _operations = new List<CardOperation>();
+        private readonly List<CardOperation> _operations = [];
         private readonly char _delimetr;
 
         public IEnumerable<CardOperation> Operations => _operations;
