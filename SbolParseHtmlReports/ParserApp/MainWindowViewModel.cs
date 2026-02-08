@@ -8,6 +8,7 @@ using ParserApp.Services;
 using ParserCore;
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -135,6 +136,11 @@ namespace ParserApp
             });
 
             return Task.CompletedTask;
+        }
+
+        public Task HelpAsync()
+        {
+            return Task.Run(() => Process.Start("https://github.com/Akeloya/SberParseHtmlReports/issues"));
         }
     }
 }
