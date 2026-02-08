@@ -39,10 +39,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ParserCore\ParserCore.csproj">
-      <Project>{5b5ec9b0-5ac2-40d8-ac02-3e8660f05281}</Project>
-      <Name>ParserCore</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\ParserCore\ParserCore.csproj" />
   </ItemGroup>
   <ItemGroup>
 	<None Include="Resources\LICENSE" />
