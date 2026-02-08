@@ -56,9 +56,9 @@ namespace ParserCore
 
             switch (fileInfo.Extension)
             {
-                case "html":
+                case ".html":
                     return new HtmlParser(path, settingsPath, delimetr);
-                case "pdf":
+                case ".pdf":
                     return new PdfParser(path, settingsPath, delimetr);
                 default:
                     throw new NotImplementedException($"Не реализован парсер для {fileInfo.Extension}");
