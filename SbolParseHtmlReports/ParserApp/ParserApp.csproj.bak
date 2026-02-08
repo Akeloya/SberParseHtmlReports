@@ -16,7 +16,6 @@
 	<PackageReference Include="Caliburn.Micro" />
 	<PackageReference Include="Caliburn.Micro.Core" />
 	<PackageReference Include="HtmlAgilityPack" />
-	<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 	<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
 	<PackageReference Include="Newtonsoft.Json" />
 	<PackageReference Include="Ninject" />
@@ -25,11 +24,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-	<Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ParserCore\ParserCore.csproj">
