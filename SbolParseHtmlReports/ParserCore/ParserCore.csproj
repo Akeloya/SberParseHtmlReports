@@ -8,6 +8,7 @@
   
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" />
+    <PackageReference Include="itext" />
     <PackageReference Include="Newtonsoft.Json" />
   </ItemGroup>
 

@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
 using Xunit;
 
 namespace ParserCore.Tests
@@ -9,7 +8,7 @@ namespace ParserCore.Tests
     {
         private const string _fileNames = "H:\\TestsData";
         private const string _outFileName = "result.csv";
-        [Fact]
+        [Fact(Skip = "Manual")]        
         public void TestParse()
         {
             var pathWithDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _outFileName);
@@ -27,7 +26,7 @@ namespace ParserCore.Tests
 
             foreach (var file in files)
             {
-                var parser = new Parser(file,testDs,';');
+                var parser = Parser.Get(file,testDs,';');
                 parser.RunParse();
                 Assert.NotNull(parser.Operations);
                 Assert.NotEmpty(parser.Operations);

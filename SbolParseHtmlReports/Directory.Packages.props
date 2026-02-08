@@ -20,5 +20,6 @@
     <PackageReference Include="Ninject" version="3.3.6" />
     <PackageReference Include="System.Runtime.Serialization.Primitives" version="4.3.0" />
     <PackageReference Include="WpfExtendedControls" version="1.0.4" />
+    <PackageReference Include="itext" Version="9.5.0" />
   </ItemGroup>
 </Project>

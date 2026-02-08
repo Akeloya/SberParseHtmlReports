@@ -13,7 +13,6 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <res:Resources x:Key="Strings" />
         <cnv:NumberSignConverter x:Key="SignConverter" />
     </UserControl.Resources>
     <Grid>
@@ -22,20 +21,20 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Menu>
-            <MenuItem Header="{Binding Source={StaticResource Strings}, Path=MenuItemFile}">
-                <MenuItem cm:Message.Attach="OpenHtmlFileAsync" Header="{Binding Source={StaticResource Strings}, Path=MenuItemOpenHtmlFile}" />
-                <MenuItem cm:Message.Attach="OpenCsvFileAsync" Header="{Binding Source={StaticResource Strings}, Path=MenuItemOpenCsvFile}" />
+            <MenuItem Header="{x:Static res:Resources.MenuItemFile}">
+                <MenuItem cm:Message.Attach="OpenHtmlFileAsync" Header="{x:Static res:Resources.MenuItemOpenHtmlFile}" />
+                <MenuItem cm:Message.Attach="OpenCsvFileAsync" Header="{x:Static res:Resources.MenuItemOpenCsvFile}" />
                 <MenuItem cm:Message.Attach="PrintAsync" Header="Печать" />
-                <MenuItem cm:Message.Attach="SaveAsync" Header="{Binding Source={StaticResource Strings}, Path=MenuItemSave}" />
+                <MenuItem cm:Message.Attach="SaveAsync" Header="{x:Static res:Resources.MenuItemSave}" />
                 <Separator />
-                <MenuItem cm:Message.Attach="CloseAsync" Header="{Binding Source={StaticResource Strings}, Path=MenuItemClose}" />
+                <MenuItem cm:Message.Attach="CloseAsync" Header="{x:Static res:Resources.MenuItemClose}" />
             </MenuItem>
-            <MenuItem Header="{Binding Source={StaticResource Strings}, Path=MenuItemSettings}">
-                <MenuItem cm:Message.Attach="OpenSettingsAsync" Header="{Binding Source={StaticResource Strings}, Path=MenuItemImportSettings}" />
+            <MenuItem Header="{x:Static res:Resources.MenuItemSettings}">
+                <MenuItem cm:Message.Attach="OpenSettingsAsync" Header="{x:Static res:Resources.MenuItemImportSettings}" />
             </MenuItem>
-            <MenuItem Header="{Binding Source={StaticResource Strings}, Path=MenuItemHelpRoot}">
-                <MenuItem cm:Message.Attach="HelpAsync" Header="{Binding Source={StaticResource Strings}, Path=MenuItemHelp}" />
-                <MenuItem cm:Message.Attach="AboutAsync" Header="{Binding Source={StaticResource Strings}, Path=MenuItemAbout}" />
+            <MenuItem Header="{x:Static res:Resources.MenuItemHelpRoot}">
+                <MenuItem cm:Message.Attach="HelpAsync" Header="{x:Static res:Resources.MenuItemHelp}" />
+                <MenuItem cm:Message.Attach="AboutAsync" Header="{x:Static res:Resources.MenuItemAbout}" />
             </MenuItem>
         </Menu>
         <DataGrid
@@ -52,6 +51,7 @@
                 <DataGridTextColumn Binding="{Binding BalanceAfter}" Header="Остаток" />
                 <DataGridTextColumn Binding="{Binding Location}" Header="Место" />
                 <DataGridTextColumn Binding="{Binding ProcessDate, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" Header="Проведено" />
+                <DataGridTextColumn Binding="{Binding CardName}" Header="Карта" />
             </DataGrid.Columns>
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
