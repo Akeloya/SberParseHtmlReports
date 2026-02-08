@@ -58,9 +58,9 @@ namespace ParserApp
 
         public Task OpenHtmlFileAsync()
         {
-            return _dialogService.OpenFileDialog("Выберите отчёт", "(Html отчёт)", "*.html", (fileName) =>
+            return _dialogService.OpenFileDialog("Выберите отчёт", "Отчеты СБОЛ", "*.html;*.pdf", (fileName) =>
             {
-                _parser = new Parser(fileName, App.GetSettingsPath(), ';');
+                _parser = Parser.Get(fileName, App.GetSettingsPath(), ';');
                 _parser.RunParse();
                 Operations = new BindableCollection<CardOperation>(_parser.Operations);
                 NotifyOfPropertyChange(nameof(Operations));

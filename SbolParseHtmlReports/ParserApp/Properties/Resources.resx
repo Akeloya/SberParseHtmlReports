@@ -170,7 +170,7 @@
     <value>Open csv file</value>
   </data>
   <data name="MenuItemOpenHtmlFile" xml:space="preserve">
-    <value>Open Html report</value>
+    <value>Open report</value>
   </data>
   <data name="MenuItemSave" xml:space="preserve">
     <value>Save</value>

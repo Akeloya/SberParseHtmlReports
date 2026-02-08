@@ -27,7 +27,7 @@ namespace ParserCore.Tests
 
             foreach (var file in files)
             {
-                var parser = new Parser(file,testDs,';');
+                var parser = Parser.Get(file,testDs,';');
                 parser.RunParse();
                 Assert.NotNull(parser.Operations);
                 Assert.NotEmpty(parser.Operations);

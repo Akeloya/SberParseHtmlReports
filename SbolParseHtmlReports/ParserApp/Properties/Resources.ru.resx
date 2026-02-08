@@ -163,7 +163,7 @@
     <value>Открыть csv файл</value>
   </data>
   <data name="MenuItemOpenHtmlFile" xml:space="preserve">
-    <value>Открыть html отчет</value>
+    <value>Открыть отчет</value>
   </data>
   <data name="MenuItemSave" xml:space="preserve">
     <value>Сохранить</value>
