@@ -74,7 +74,7 @@ namespace ParserApp
         public bool CanSave_CanExecute => _parser != null && _parser.Operations.Any();
         public Task SaveAsync()
         {
-            return _dialogService.OpenFileDialog(null, "(Html отчёт)", "*.html", (fileName) =>
+            return _dialogService.OpenFileDialog(null, "(CSV)", "*.csv", (fileName) =>
             {
                 var filePath = Path.Combine(fileName, "result.csv");
                 return _parser.SaveAsync(filePath);
